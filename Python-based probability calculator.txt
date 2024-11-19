@@ -1,0 +1,42 @@
+def get_valid_probability_input(prompt):
+    while True:
+        try:
+            prob = float(input(prompt))
+            if 0 <= prob <= 1:
+                return prob
+            else:
+                print("Invalid input. Please enter a value between 0 and 1.")
+        except ValueError:
+            print("Invalid input. Please enter a valid number.")
+
+def combined_with(p_a, p_b):
+    return p_a * p_b
+
+def either(p_a, p_b):
+    return p_a + p_b - (p_a * p_b)
+
+def main():
+    print("Welcome to the Probability Calculator")
+
+    # Get valid probabilities
+    p_a = get_valid_probability_input("Enter the probability for P(A): ")
+    p_b = get_valid_probability_input("Enter the probability for P(B): ")
+
+    # Choose operation
+    print("\nChoose an operation:")
+    print("1. CombinedWith (P(A) * P(B))")
+    print("2. Either (P(A) + P(B) - P(A) * P(B))")
+    
+    choice = input("Enter 1 or 2: ")
+
+    if choice == '1':
+        result = combined_with(p_a, p_b)
+        print(f"\nThe result of CombinedWith is: {result}")
+    elif choice == '2':
+        result = either(p_a, p_b)
+        print(f"\nThe result of Either is: {result}")
+    else:
+        print("Invalid choice. Please choose 1 or 2.")
+
+if __name__ == "__main__":
+    main()
